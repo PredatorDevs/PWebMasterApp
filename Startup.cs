@@ -5,6 +5,12 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using PWebMasterApp.Controllers;
+using PWebMasterApp.Helpers;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace PWebMasterApp
 {
@@ -23,11 +29,15 @@ namespace PWebMasterApp
 
             services.AddControllersWithViews();
 
+            services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            // configure DI for application services
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

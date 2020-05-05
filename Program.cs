@@ -20,7 +20,7 @@ namespace PWebMasterApp
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://192.168.0.15:5001").UseStartup<Startup>();
                 });
     }
 }

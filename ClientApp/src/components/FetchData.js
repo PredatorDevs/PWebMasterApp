@@ -21,6 +21,7 @@ export class FetchData extends Component {
             <th>Temp. (C)</th>
             <th>Temp. (F)</th>
             <th>Summary</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -44,7 +45,7 @@ export class FetchData extends Component {
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
+        <h1 id="tabelLabel">Weather forecast</h1>
         <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>
@@ -53,6 +54,7 @@ export class FetchData extends Component {
 
   async populateWeatherData() {
     const response = await fetch('weatherforecast');
+    console.log(await (await fetch('api/producto')).json())
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });
   }
